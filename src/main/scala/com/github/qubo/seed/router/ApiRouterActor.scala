@@ -1,9 +1,8 @@
-package com.github.qubo.router
+package com.github.qubo.seed.router
 
 import java.util.NoSuchElementException
 
 import akka.actor.{Actor, ActorContext, ActorLogging}
-import com.github.qubo.seed.router.UserApi
 import com.github.qubo.seed.swagger.{SwaggerDefinition, SwaggerDefinitionConfig}
 import spray.http.MediaTypes._
 import spray.http.StatusCodes

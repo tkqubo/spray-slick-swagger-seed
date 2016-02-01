@@ -1,4 +1,4 @@
-package com.github.qubo
+package com.github.qubo.seed
 
 import java.util
 

@@ -5,7 +5,6 @@ import slick.dbio.Effect.Read
 import slick.dbio.{DBIOAction, NoStream}
 import slick.driver.MySQLDriver.api._
 import slick.lifted.ProvenShape
-import slick.profile.SqlAction
 import spray.json.DefaultJsonProtocol._
 
 import scala.concurrent.ExecutionContext

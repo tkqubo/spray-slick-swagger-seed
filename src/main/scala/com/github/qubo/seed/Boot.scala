@@ -1,11 +1,12 @@
-package com.github.qubo
+package com.github.qubo.seed
 
 import akka.actor.{ActorRef, ActorSystem, Props}
 import akka.io.IO
 import akka.pattern.ask
 import akka.util.Timeout
-import com.github.qubo.router.ApiRouterActor
-import com.github.qubo.utils.Config.app
+import com.github.qubo.seed.router.ApiRouterActor
+import com.github.qubo.seed.utils.Config
+import Config.app
 import spray.can.Http
 
 import scala.concurrent.ExecutionContext

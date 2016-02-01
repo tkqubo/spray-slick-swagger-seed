@@ -1,4 +1,4 @@
-package com.github.qubo.utils
+package com.github.qubo.seed.utils
 
 import com.typesafe.config.ConfigFactory
 import slick.jdbc.{JdbcBackend, JdbcDataSource}

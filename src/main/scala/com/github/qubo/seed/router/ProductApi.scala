@@ -1,4 +1,4 @@
-package com.github.qubo.router
+package com.github.qubo.seed.router
 
 import javax.ws.rs.Path
 
