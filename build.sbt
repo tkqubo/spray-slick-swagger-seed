@@ -15,6 +15,7 @@ javaOptions in Test ++= Seq(
   s"-Denvironment=test",
   s"-Dconfig.file=${Option(System.getProperty("config.file")).getOrElse("src/main/resources/test.conf")}"
 )
+seq(flywaySettings: _*)
 
 libraryDependencies ++= {
   val akkaVersion = "2.4.1"
