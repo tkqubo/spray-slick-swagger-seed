@@ -1,6 +1,8 @@
 package com.github.qubo.utils
 
 import com.typesafe.config.ConfigFactory
+import slick.jdbc.{JdbcBackend, JdbcDataSource}
+import slick.util.ClassLoaderUtil
 
 
 object Config {
@@ -17,11 +19,8 @@ object Config {
 
 
   object dbConfig {
-    val dbConfig = config.getConfig("db")
-
-    val url = dbConfig.getString("url")
-    val user = dbConfig.getString("user")
-    val password = dbConfig.getString("password")
-    val driver = dbConfig.getString("driver")
+    lazy val dbConfig = config.getConfig("db")
+    lazy val ds: JdbcDataSource = JdbcDataSource.forConfig(dbConfig, null, "master", ClassLoaderUtil.defaultClassLoader)
+    val db = JdbcBackend.Database.forSource(ds)
   }
 }

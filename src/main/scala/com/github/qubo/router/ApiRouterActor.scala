@@ -3,6 +3,7 @@ package com.github.qubo.router
 import java.util.NoSuchElementException
 
 import akka.actor.{Actor, ActorContext, ActorLogging}
+import com.github.qubo.seed.router.UserApi
 import com.github.qubo.seed.swagger.{SwaggerDefinition, SwaggerDefinitionConfig}
 import spray.http.MediaTypes._
 import spray.http.StatusCodes
@@ -11,8 +12,7 @@ import spray.json.DefaultJsonProtocol
 import spray.routing.{ExceptionHandler, HttpService, Route}
 
 import scala.concurrent.ExecutionContext
-import scala.reflect.runtime.universe.Type
-import scala.reflect.runtime.universe.typeOf
+import scala.reflect.runtime.universe.{Type, typeOf}
 
 class ApiRouterActor
   extends Actor
@@ -22,6 +22,7 @@ class ApiRouterActor
   with UserApi
   with HttpService {
   def actorRefFactory: ActorContext = context
+  implicit val ec: ExecutionContext = actorRefFactory.dispatcher
 
   private def apiTypes: Seq[Type] = Seq(
     typeOf[UserApi]
