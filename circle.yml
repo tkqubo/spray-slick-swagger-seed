@@ -9,7 +9,12 @@ general:
     - target/*/scoverage-report
     - target/*/api
 dependencies:
+  pre:
+    - echo '-mem 800' >> .sbtopts
+    - wget -q https://dl.bintray.com/sbt/debian/sbt-0.13.9.deb
+    - sudo dpkg -i sbt-0.13.9.deb
   cache_directories:
+    - "~/.ivy2"
     - "~/.sbt"
   override:
     - echo "N/A"
@@ -24,6 +29,3 @@ deployment:
     commands:
       - cat /dev/null | sbt doc
       - cat /dev/null | sbt coverageReport
-      - cat /dev/null | git config --global user.email "tk.qubo@gmail.com"
-      - cat /dev/null | git config --global user.name "tkqubo"
-      - cat /dev/null | sbt ghpages-push-site
