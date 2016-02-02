@@ -103,7 +103,6 @@ local.properties
 .cache
 .history
 .lib/
-swagger-ui/*
 target/
 lib_managed/
 src_managed/
