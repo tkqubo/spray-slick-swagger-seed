@@ -31,6 +31,6 @@ object Boot extends App {
         println(s"REST interface bound to $address")
       case Http.CommandFailed(cmd) =>
         println("REST interface could not bind to " + s"${app.interface}:${app.port}, ${cmd.failureMessage}")
-        system.terminate()
+        system.shutdown()
     }
 }
