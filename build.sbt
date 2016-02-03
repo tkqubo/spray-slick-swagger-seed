@@ -1,6 +1,7 @@
 Seq(Revolver.settings: _*)
 
 mainClass in compile := Some("com.github.qubo.seed.Boot")
+mainClass in assembly := Some("com.github.qubo.seed.Boot")
 
 val environment = Option(System.getProperty("environment")).getOrElse("localhost")
 
@@ -16,7 +17,6 @@ javaOptions in Test ++= Seq(
   s"-Dconfig.file=${Option(System.getProperty("config.file")).getOrElse("src/main/resources/test.conf")}"
 )
 
-mainClass in assembly := Some("com.github.qubo.seed.Boot")
 test in assembly := {}
 
 aggregate in assembly := false
@@ -28,3 +28,4 @@ assemblyMergeStrategy in assembly := {
   case PathList("logback", xs @ _*) => MergeStrategy.first
   case _ => MergeStrategy.deduplicate
 }
+

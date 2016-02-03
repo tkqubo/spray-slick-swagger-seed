@@ -1,3 +1,4 @@
+import com.typesafe.sbt.packager.archetypes.JavaServerAppPackaging
 import sbt.Keys._
 import sbt._
 
@@ -46,7 +47,7 @@ object Build extends sbt.Build {
       "org.flywaydb" % "flyway-core" % "3.2.1",
       "net.ceedubs" %% "ficus" % "1.1.2"
     ),
-    mainClass in(Compile, run) := Some("com.github.qubo.seed.Boot"),
+    mainClass in Compile := Some("com.github.qubo.seed.Boot"),
     fork in Global := true,
     javaOptions in Test += "-Xmx2048m"
   )
@@ -74,4 +75,5 @@ object Build extends sbt.Build {
       version := "0.1.0-SNAPSHOT"
     )
   )
+    .enablePlugins(JavaServerAppPackaging)
 }

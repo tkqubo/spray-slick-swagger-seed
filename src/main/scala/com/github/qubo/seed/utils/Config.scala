@@ -1,12 +1,14 @@
 package com.github.qubo.seed.utils
 
+import scalaz._,Scalaz._
 import com.typesafe.config.ConfigFactory
 import slick.jdbc.{JdbcBackend, JdbcDataSource}
 import slick.util.ClassLoaderUtil
 
 
 object Config {
-  private val config =  ConfigFactory.load()
+  val environment = Option(System.getProperty("environment")).getOrElse("localhost")
+  private val config =  ConfigFactory.parseResources(s"$environment.conf")
 
   object app {
     val appConf = config.getConfig("app")
