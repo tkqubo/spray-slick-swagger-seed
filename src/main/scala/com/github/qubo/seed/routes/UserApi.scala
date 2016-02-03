@@ -1,8 +1,8 @@
-package com.github.qubo.seed.router
+package com.github.qubo.seed.routes
 
 import javax.ws.rs.{GET, Path, PathParam}
 
-import com.github.qubo.seed.persistence.User
+import com.github.qubo.seed.persistences.User
 import com.github.qubo.seed.utils.Config
 import io.swagger.annotations._
 import spray.routing.{Route, StandardRoute}

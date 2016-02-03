@@ -1,4 +1,4 @@
-package com.github.qubo.seed.router
+package com.github.qubo.seed.routes
 
 import org.slf4j.LoggerFactory
 import spray.httpx.SprayJsonSupport

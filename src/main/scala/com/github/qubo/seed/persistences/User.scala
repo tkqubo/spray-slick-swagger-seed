@@ -1,4 +1,4 @@
-package com.github.qubo.seed.persistence
+package com.github.qubo.seed.persistences
 
 import io.swagger.annotations.ApiModel
 import slick.dbio.Effect.Read
