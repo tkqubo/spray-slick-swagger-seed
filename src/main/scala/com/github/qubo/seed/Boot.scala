@@ -4,7 +4,7 @@ import akka.actor.{ActorRef, ActorSystem, Props}
 import akka.io.IO
 import akka.pattern.ask
 import akka.util.Timeout
-import com.github.qubo.seed.router.ApiRouterActor
+import com.github.qubo.seed.routes.ApiRouterActor
 import com.github.qubo.seed.utils.Config
 import Config.app
 import spray.can.Http

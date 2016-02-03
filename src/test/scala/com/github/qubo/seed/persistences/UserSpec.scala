@@ -1,4 +1,4 @@
-package com.github.qubo.seed.persistence
+package com.github.qubo.seed.persistences
 
 import scalaz._, Scalaz._
 

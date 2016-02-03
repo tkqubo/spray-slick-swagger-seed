@@ -1,4 +1,4 @@
-package com.github.qubo.seed.persistence
+package com.github.qubo.seed.persistences
 
 import org.specs2.mutable.Specification
 import org.specs2.specification.process.RandomSequentialExecution
