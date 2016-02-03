@@ -5,7 +5,7 @@ import java.util.NoSuchElementException
 import akka.actor.{Actor, ActorContext, ActorLogging}
 import com.github.qubo.seed.swagger.{SwaggerDefinition, SwaggerDefinitionConfig}
 import spray.http.MediaTypes._
-import spray.http.StatusCodes
+import spray.http.{AllOrigins, StatusCodes}
 import spray.httpx.SprayJsonSupport
 import spray.json.DefaultJsonProtocol
 import spray.routing.{ExceptionHandler, HttpService, Route}
@@ -19,6 +19,7 @@ class ApiRouterActor
   with DefaultJsonProtocol
   with SprayJsonSupport
   with UserApi
+  with CorsHelper
   with HttpService {
   def actorRefFactory: ActorContext = context
   implicit val ec: ExecutionContext = actorRefFactory.dispatcher
@@ -28,7 +29,7 @@ class ApiRouterActor
   )
 
   def receive: Receive = runRoute(
-    respondWithMediaType(`application/json`) {
+    (cors(AllOrigins) & respondWithMediaType(`application/json`)) {
       apiRoute ~ swaggerRoute
     } ~ swaggerUiRoute
   )
