@@ -8,7 +8,9 @@ import io.swagger.annotations._
 import spray.routing.{Route, StandardRoute}
 
 @Api("user api")
-trait UserApi extends ApiBase {
+trait UserApi
+  extends ApiBase
+  with DbHelper {
   def userRoute: Route =
     path("users") {
       handleGetUsers
@@ -27,7 +29,7 @@ trait UserApi extends ApiBase {
   ))
   def handleGetUser(@PathParam("name") name: String): StandardRoute =
     complete {
-      Config.dbConfig.db.run(User.selectByName(name))
+      User.selectByName(name)
         .map(_.getOrElse(throw new NoSuchElementException()))
     }
 
@@ -35,7 +37,7 @@ trait UserApi extends ApiBase {
   @ApiOperation(value = "sample endpoint", response = classOf[User], responseContainer = "List")
   def handleGetUsers: StandardRoute =
     complete {
-      Config.dbConfig.db.run(User.selectAll)
+      User.selectAll
     }
 }
 

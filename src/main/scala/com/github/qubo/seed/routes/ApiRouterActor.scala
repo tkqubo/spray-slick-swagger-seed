@@ -4,6 +4,8 @@ import java.util.NoSuchElementException
 
 import akka.actor.{Actor, ActorContext, ActorLogging}
 import com.github.qubo.seed.swagger.{SwaggerDefinition, SwaggerDefinitionConfig}
+import com.github.qubo.seed.utils.Config
+import slick.jdbc.JdbcBackend
 import spray.http.MediaTypes._
 import spray.http.{AllOrigins, StatusCodes}
 import spray.httpx.SprayJsonSupport
@@ -23,6 +25,7 @@ class ApiRouterActor
   with HttpService {
   def actorRefFactory: ActorContext = context
   implicit val ec: ExecutionContext = actorRefFactory.dispatcher
+  override implicit val db: JdbcBackend.DatabaseDef = Config.Database.db
 
   private def apiTypes: Seq[Type] = Seq(
     typeOf[UserApi]
