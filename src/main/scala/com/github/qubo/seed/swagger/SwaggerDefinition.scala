@@ -2,6 +2,7 @@ package com.github.qubo.seed.swagger
 
 import java.util
 
+import com.github.qubo.seed.utils.ObjectHelper._
 import io.swagger.jaxrs.Reader
 import io.swagger.jaxrs.config.ReaderConfig
 import io.swagger.models.Swagger
@@ -27,6 +28,7 @@ class SwaggerDefinition(config: SwaggerDefinitionConfig) {
   lazy val swagger: Swagger = reader.read(
     config.types
       .map(getClassNameForType)
+      .tap(name => logger.info("loading class to swagger: {}", name))
       .map(Class.forName).toSet
   )
 

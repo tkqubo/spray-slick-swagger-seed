@@ -7,6 +7,7 @@ import akka.util.Timeout
 import com.github.qubo.seed.routes.ApiRouterActor
 import com.github.qubo.seed.utils.Config
 import Config.App
+import org.slf4j.LoggerFactory
 import spray.can.Http
 
 import scala.concurrent.ExecutionContext
@@ -14,6 +15,7 @@ import scala.concurrent.duration._
 
 
 object Boot extends App {
+  protected val logger = LoggerFactory.getLogger(getClass)
 
   // we need an ActorSystem to host our application in
   implicit val system = ActorSystem(App.systemName)
@@ -28,9 +30,9 @@ object Boot extends App {
     .mapTo[Http.Event]
     .map {
       case Http.Bound(address) =>
-        println(s"REST interface bound to $address")
+        logger.info(s"REST interface bound to $address")
       case Http.CommandFailed(cmd) =>
-        println("REST interface could not bind to " + s"${App.interface}:${App.port}, ${cmd.failureMessage}")
+        logger.error(s"REST interface could not bind to ${App.interface}:${App.port}, ${cmd.failureMessage}")
         system.shutdown()
     }
 }

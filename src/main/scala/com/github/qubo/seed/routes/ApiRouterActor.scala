@@ -11,6 +11,7 @@ import spray.http.{AllOrigins, StatusCodes}
 import spray.httpx.SprayJsonSupport
 import spray.json.DefaultJsonProtocol
 import spray.routing.{ExceptionHandler, HttpService, Route}
+import scalaz._, Scalaz._
 
 import scala.concurrent.ExecutionContext
 import scala.reflect.runtime.universe.{Type, typeOf}
@@ -43,7 +44,13 @@ class ApiRouterActor
 
   private def swaggerRoute: Route =
     (path("swagger.json") & get & complete) {
-      new SwaggerDefinition(SwaggerDefinitionConfig(types = apiTypes)).prettyJson
+      new SwaggerDefinition(
+        SwaggerDefinitionConfig(
+          types = apiTypes,
+          host = Config.App.interface,
+          port = Config.App.port.some
+        )
+      ).prettyJson
     }
 
   private def swaggerUiRoute: Route =

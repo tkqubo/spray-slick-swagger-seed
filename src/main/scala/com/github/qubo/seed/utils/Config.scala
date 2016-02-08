@@ -12,7 +12,7 @@ object Config {
   private val config = ConfigFactory.parseResources(s"$environment.conf")
 
   object App {
-    val appConf = config.getConfig("app")
+    private val appConf = config.getConfig("app")
     val systemName = appConf.getString("systemName")
     val interface = appConf.getString("interface")
     val port = appConf.getInt("port")

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+Default logback configuration provided for import, equivalent to the programmatic
+initialization performed by Boot
+-->
+
+<configuration>
+  <property name="CONSOLE_LOG_PATTERN" value="[%highlight(%-5level)] [%thread] - %msg%n"/>
+  <property name="CONSOLE_DETAIL_LOG_PATTERN" value="[%highlight(%-5level)] [%thread] %logger{36} - %msg%n%caller{1}%n"/>
+  <property name="FILE_LOG_PATTERN" value="[%date{ISO8601}] [%-5level] [%thread] - %msg%n"/>
+  <property name="FILE_DETAIL_LOG_PATTERN" value="[%date{ISO8601}] [%-5level] [%thread] %logger{36} - %msg%n%caller{1}%n"/>
+
+  <appender name="FILE" class="ch.qos.logback.core.FileAppender">
+    <file>${LOG_FILE_PATH:-log/application-${environment}.log}</file>
+    <append>true</append>
+    <encoder>
+      <pattern>${FILE_LOG_PATTERN}</pattern>
+      <charset>utf-8</charset>
+    </encoder>
+  </appender>
+  <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+    <encoder>
+      <pattern>${CONSOLE_LOG_PATTERN}</pattern>
+      <charset>utf-8</charset>
+    </encoder>
+  </appender>
+
+  <root level="INFO">
+    <appender-ref ref="CONSOLE"/>
+  </root>
+</configuration>
