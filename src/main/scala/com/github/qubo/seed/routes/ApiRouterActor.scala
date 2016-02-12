@@ -5,6 +5,7 @@ import java.util.NoSuchElementException
 import akka.actor.{Actor, ActorContext, ActorLogging}
 import com.github.qubo.seed.swagger.{SwaggerDefinition, SwaggerDefinitionConfig}
 import com.github.qubo.seed.utils.Config
+import io.swagger.models.Info
 import slick.jdbc.JdbcBackend
 import spray.http.MediaTypes._
 import spray.http.{AllOrigins, StatusCodes}
@@ -44,13 +45,7 @@ class ApiRouterActor
 
   private def swaggerRoute: Route =
     (path("swagger.json") & get & complete) {
-      new SwaggerDefinition(
-        SwaggerDefinitionConfig(
-          types = apiTypes,
-          host = Config.App.interface,
-          port = Config.App.port.some
-        )
-      ).prettyJson
+      new SwaggerDefinition(Config.App.swaggerDefinitionConfig(apiTypes = apiTypes)).prettyJson
     }
 
   private def swaggerUiRoute: Route =
