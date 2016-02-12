@@ -6,7 +6,7 @@ import akka.pattern.ask
 import akka.util.Timeout
 import com.github.qubo.seed.routes.ApiRouterActor
 import com.github.qubo.seed.utils.Config
-import Config.App
+import com.github.qubo.seed.utils.Config.App
 import org.slf4j.LoggerFactory
 import spray.can.Http
 

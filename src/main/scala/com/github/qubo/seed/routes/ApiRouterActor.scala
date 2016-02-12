@@ -3,16 +3,14 @@ package com.github.qubo.seed.routes
 import java.util.NoSuchElementException
 
 import akka.actor.{Actor, ActorContext, ActorLogging}
-import com.github.qubo.seed.swagger.{SwaggerDefinition, SwaggerDefinitionConfig}
+import com.github.qubo.seed.swagger.SwaggerDefinition
 import com.github.qubo.seed.utils.Config
-import io.swagger.models.Info
 import slick.jdbc.JdbcBackend
 import spray.http.MediaTypes._
 import spray.http.{AllOrigins, StatusCodes}
 import spray.httpx.SprayJsonSupport
 import spray.json.DefaultJsonProtocol
 import spray.routing.{ExceptionHandler, HttpService, Route}
-import scalaz._, Scalaz._
 
 import scala.concurrent.ExecutionContext
 import scala.reflect.runtime.universe.{Type, typeOf}
@@ -61,6 +59,7 @@ class ApiRouterActor
       case e: NoSuchElementException =>
         complete(StatusCodes.NotFound)
       case x =>
+        x.printStackTrace()
         complete(StatusCodes.InternalServerError -> x.getMessage)
     }
 }
